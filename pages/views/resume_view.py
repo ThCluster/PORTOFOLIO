@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from pages.models.resume import Resume
+from pages.models.education import Education
 
-# Create your views here.
 def resume_pages(request):
     datas = {
-        "resume":Resume.objects.all()
+        "resumes": Resume.objects.filter(active=True),
+        "educations": Education.objects.all(),
     }
-    return render(request,"resume.html",datas)
+    return render(request, "resume.html", datas)

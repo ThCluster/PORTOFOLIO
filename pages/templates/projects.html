@@ -1,48 +1,66 @@
-          <!-- Projects Section-->
+<!-- Projects Section-->
 {% extends "pages/base.html" %}
 {% load static %}
+
 {% block tile %}
 <title>DJVKA - PROJECTS</title>
-{% endblock%}
+{% endblock %}
+
 {% block content %}
-            <section class="py-5">
-                <div class="container px-5 mb-5">
-                    <div class="text-center mb-5">
-                        <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
-                    </div>
-                    <div class="row gx-5 justify-content-center">
-                        <div class="col-lg-11 col-xl-9 col-xxl-8">
-                            <!-- Project Card 1-->
-                             {% for project in projects %}
-                            <div class="card overflow-hidden shadow rounded-4 border-0 mb-5">
-                                <div class="card-body p-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="p-5">
-                                            <h2>{{ project.name_project }}</h2>
-                                            <p>{{ project.description }}</p>
-
-                                        </div>
-                                            {% if project.image %}
-                                        <img class="img-fluid" src="https://dummyimage.com/300x400/343a40/6c757d" alt="..." />
-                                            {% endif %}
-
-                                    </div>
-                                </div>
+<section class="py-5 bg-light">
+    <div class="container px-5 mb-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
+            <p class="lead text-muted mt-2">Découvrez mes dernières réalisations et créations web.</p>
+        </div>
+        <div class="row gx-5 justify-content-center">
+            <div class="col-lg-11 col-xl-10">
+                
+                {% for project in projects %}
+                <!-- Project Card -->
+                <div class="card overflow-hidden shadow-sm rounded-4 border-0 mb-5 bg-white transform-hover transition">
+                    <div class="card-body p-0">
+                        <div class="row g-0 align-items-center">
+                            <!-- Texte du projet (Prend 7 colonnes sur 12 sur PC) -->
+                            <div class="col-md-7 p-4 p-md-5">
+                                <h2 class="fw-bold mb-3 h3 text-dark">{{ project.name_project }}</h2>
+                                <p class="text-muted leading-relaxed mb-0">{{ project.description }}</p>
                             </div>
-                            <!-- Project Card 2-->
-                             {% endfor %}
+                            
+                            <!-- Image du projet (Prend 5 colonnes sur 12 sur PC) -->
+                            <div class="col-md-5">
+                                {% if project.picture %}
+                                <div class="project-img-container" style="height: 250px; overflow: hidden; position: relative;">
+                                    <img class="w-100 h-100" src="{{ project.picture.url }}" alt="{{ project.name_project }}" style="object-fit: cover; object-position: center;" />
+                                </div>
+                                {% else %}
+                                <!-- Image par défaut si le projet n'a pas de photo -->
+                                <div class="bg-secondary d-flex align-items-center justify-content-center text-white-50" style="height: 250px;">
+                                    <i class="bi bi-laptop" style="font-size: 3rem;"></i>
+                                </div>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- Call to action section-->
-            <section class="py-5 bg-gradient-primary-to-secondary text-white">
-                <div class="container px-5 my-5">
-                    <div class="text-center">
-                        <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
-                        <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="contact.html">Contact me</a>
-                    </div>
+                {% empty %}
+                <div class="text-center py-5">
+                    <p class="text-muted fs-5">Aucun projet n'est disponible pour le moment.</p>
                 </div>
-            </section>
-        </main>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to action section-->
+<section class="py-5 bg-gradient-primary-to-secondary text-white">
+    <div class="container px-5 my-5">
+        <div class="text-center">
+            <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
+            <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="{% url 'contact_view' %}">Contact me</a>
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -120,3 +120,16 @@ MEDIA_ROOT = "media"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+# Configuration SMTP pour Gmail
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# Récupération sécurisée des identifiants depuis votre fichier .env
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "vincentandredev@gmail.com")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+NOTIFY_EMAIL = EMAIL_HOST_USER
