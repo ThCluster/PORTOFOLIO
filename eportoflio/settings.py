@@ -14,7 +14,7 @@ load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key-change-me')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() in ('1', 'true', 'yes', 'on')
+DEBUG = os.environ.get('DEBUG', 'True').lower() in ('1', 'true', 'yes', 'on')
 
 # Permet à Django d'accepter toutes les adresses générées par Vercel
 ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']

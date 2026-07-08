@@ -23,9 +23,15 @@
                         <div class="row g-0 align-items-center">
                             <!-- Texte du projet (Prend 7 colonnes sur 12 sur PC) -->
                             <div class="col-md-7 p-4 p-md-5">
-                                <h2 class="fw-bold mb-3 h3 text-dark">{{ project.name_project }}</h2>
-                                <p class="text-muted leading-relaxed mb-0">{{ project.description }}</p>
-                            </div>
+    <h2 class="fw-bold mb-3 h3 text-dark">
+        <!-- Le lien est placé sur le titre, mais stretched-link l'étend à tout le bloc -->
+        <a href="{% url 'project_detail' project.id %}" class="text-decoration-none text-dark stretched-link">
+            {{ project.name_project }}
+        </a>
+    </h2>
+    <p class="text-muted leading-relaxed mb-0">{{ project.description }}</p>
+</div>
+
                             
                             <!-- Image du projet (Prend 5 colonnes sur 12 sur PC) -->
                             <div class="col-md-5">
