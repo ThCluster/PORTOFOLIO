@@ -35,7 +35,6 @@ class Resume(StandardModel):
     
     
 
-def __str__(self):
-    return self.nom_societe
-
+    def __str__(self):
+        return str(self.nom_societe) or "Résumé"
 
